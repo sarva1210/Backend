@@ -7,12 +7,8 @@ const notes = []
 
 app.post("/notes", (req, res) => {
   console.log(req.body)
+  
   notes.push(req.body)    //store
-
-  // res.json({
-  //   message: "note created",
-  //   notes: notes
-  // })
 
   res.send("note created")
 })
