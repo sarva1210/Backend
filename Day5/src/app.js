@@ -28,7 +28,13 @@ app.delete("/notes/:index", (req, res) => {
     })
 })
 
+app.patch("/notes/:index", (req, res) => {
+    notes[ req.params.index ].description = req.body.description
 
+    req.status(200).json({
+        message:"Notes updated successfully"
+    })
+})
 
 
 // app.delete("/notes/:index", (req, res) => {
