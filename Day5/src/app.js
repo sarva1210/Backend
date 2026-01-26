@@ -20,6 +20,15 @@ app.get("/notes",(req,res)=>{
     })
 })
 
+app.delete("/notes/:index", (req, res) => {
+    delete notes[ req.params.index ]
+
+    req.status(200).json({
+        message:"Note deleted successfully"
+    })
+})
+
+
 
 
 // app.delete("/notes/:index", (req, res) => {
