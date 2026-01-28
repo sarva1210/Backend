@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const app = require("./src/app")
 
 mongoose.connect(process.env.DB_URI)
+
   .then(() => {
     console.log("Connected to Database")
 
