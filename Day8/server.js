@@ -1,6 +1,0 @@
-const mongoose = require('mongoose')
-const app = require('./src/app')
-
-app.listen(3000,()=>{
-    console.log("server is running in 3000")
-})
