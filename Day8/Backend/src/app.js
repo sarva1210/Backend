@@ -5,7 +5,9 @@ const noteModel = require('./models/note.model')
 
 const app = express()
 app.use(cors())
+
 app.use(express.json())
+
 
 //  post / api /notes 
 app.post('/api/notes',async(req,res)=>{
@@ -33,6 +35,7 @@ app.get('/api/notes',async(req,res)=>{
 
 })
 
+
 //  dlt / api /notes/:id
 app.delete('/api/notes/:id',async(req,res)=>{
     const id = req.params.id
@@ -43,6 +46,7 @@ app.delete('/api/notes/:id',async(req,res)=>{
         message:"notes deleted successfully"
     })
 })
+
 
 //  patch / api /notes/:id
 app.patch('/api/notes/:id',async(req,res)=>{
@@ -56,5 +60,6 @@ app.patch('/api/notes/:id',async(req,res)=>{
         message:"notes updated successfully"
     })
 })
+
 
 module.exports = app
