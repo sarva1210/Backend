@@ -12,11 +12,17 @@ html{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+input{
+  padding-inline: 2rem;
+  padding-block: 0.8rem;
+}
+
 .notes{
   display: flex;
   gap: 1rem;
   padding-block: 1rem;
   padding-inline: 3rem;
+  flex-wrap: wrap;
 }
 
 .note{
@@ -25,4 +31,18 @@ html{
   border-radius: 0.7rem;
   max-width: 20rem;
   color: white;
+}
+
+.note-create-form{
+  display: flex;
+  gap: 1rem;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+}
+
+.btn{
+  display: inline;
+  margin-right: 10px;
+  padding-inline: 2rem;
+  padding-block: 0.5rem;
 }
