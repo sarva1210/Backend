@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 
 const noteModel = require('./models/note.model')
 
@@ -7,6 +8,7 @@ const app = express()
 app.use(cors())
 
 app.use(express.json())
+app.use(express.static("./public"))
 
 
 //  post / api /notes 
@@ -59,6 +61,12 @@ app.patch('/api/notes/:id',async(req,res)=>{
     res.status(200).json({
         message:"notes updated successfully"
     })
+})
+
+console.log(__dirname)
+
+app.use('*name', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"))
 })
 
 
