@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from "axios"
 
+const BASE_URL = import.meta.env.VITE_API_URL
 
 function App() {
   const [notes, setNotes] = useState([
@@ -16,12 +17,31 @@ function App() {
 
   console.log("hello integration")
 
-  function fetchNotes(){
-    axios.get('http://localhost:3000/api/notes')
-      .then((res)=>{
+  // function fetchNotes(){
+  //   axios.get(`${BASE_URL}/api/notes`)
+  //     .then((res)=>{
+  //       setNotes(res.data.notes)
+  //   })
+  // }
+
+  function fetchNotes() {
+  axios.get(`${BASE_URL}/api/notes`)
+    .then(res => {
+      if (Array.isArray(res.data)) {
+        setNotes(res.data)
+      } else if (Array.isArray(res.data.notes)) {
         setNotes(res.data.notes)
+      } else {
+        setNotes([])
+      }
+    })
+    .catch(err => {
+      console.error(err)
+      setNotes([])
     })
   }
+
+
 
   useEffect(()=>{
     fetchNotes()
@@ -34,7 +54,7 @@ function App() {
 
     console.log(title.value, description.value)
 
-    axios.post("http://localhost:3000/api/notes",{
+    axios.post(`${BASE_URL}/api/notes`,{
       title:title.value,
       description:description.value
     })
@@ -46,7 +66,7 @@ function App() {
   }
 
   function handleDeleteNote(noteId){
-    axios.delete("http://localhost:3000/api/notes/" + noteId)
+    axios.delete(`${BASE_URL}/api/notes/${noteId}`)
     .then(res=>{
       console.log(res.data)
       fetchNotes()
@@ -54,7 +74,7 @@ function App() {
   }
 
   function handleUpdateNote(noteId, newDescription) {
-    axios.patch(`http://localhost:3000/api/notes/${noteId}`, {
+    axios.patch(`${BASE_URL}/api/notes/${noteId}`, {
     description: newDescription
   })
   .then(res => {
