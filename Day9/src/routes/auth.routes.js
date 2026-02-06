@@ -7,12 +7,15 @@ const crypto = require('crypto')
 
 authRouter.post("/register", async(req,res)=>{
     const{email, name, password} = req.body
+
     const isUserAlreadyExists = await userModel.findOne({email})
+
     if(isUserAlreadyExists){
         return res.status(400).json({
             message:"User already exists with this email"
         })
     }
+    
     const hash = crypto.createHash("md5").update(password).digest("hex")
 
     const user = await userModel.create({
