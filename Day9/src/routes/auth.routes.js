@@ -31,7 +31,7 @@ authRouter.post("/register", async(req,res)=>{
     )
 
     res.cookie("jwt_token",token)
-    
+
     res.status(201).json({
         message:"user registered",
         user,
@@ -58,15 +58,19 @@ authRouter.post("/login",async(req,res)=>{
             message:"User not found with this email address"
         })
     }
+
     const isPasswordMatched = user.password === crypto.createHash("md5").update(password).digest("hex")
+
     if(!isPasswordMatched){
         return res.status(401).json({
             message:"Invalid password!"
         })
     }
+
     const token = jwt.sign({
         id:user._id,
     },process.env.JWT_SECRET)
+    
     res.cookie("jwt_token",token)
 
     res.json(200).json({
