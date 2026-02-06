@@ -15,12 +15,13 @@ authRouter.post("/register", async(req,res)=>{
             message:"User already exists with this email"
         })
     }
-    
+
     const hash = crypto.createHash("md5").update(password).digest("hex")
 
     const user = await userModel.create({
         email, password:hash, name
     })
+
     const token = jwt.sign(
         {
             id:user._id,
@@ -28,7 +29,9 @@ authRouter.post("/register", async(req,res)=>{
         },
         process.env.JWT_SECRET
     )
+
     res.cookie("jwt_token",token)
+    
     res.status(201).json({
         message:"user registered",
         user,
