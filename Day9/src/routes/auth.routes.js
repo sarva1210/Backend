@@ -41,6 +41,7 @@ authRouter.post("/register", async(req,res)=>{
     })
 })
 
+
 authRouter.post("/protected",(req, res)=>{
     console.log(req.cookies)
 
