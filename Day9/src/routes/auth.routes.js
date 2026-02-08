@@ -50,6 +50,7 @@ authRouter.post("/protected",(req, res)=>{
     })
 })
 
+
 //controller
 authRouter.post("/login",async(req,res)=>{
     const {email, password} = req.body
