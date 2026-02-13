@@ -11,6 +11,7 @@ async function createPostController(req,res) {
     console.log(req.body, req.file)
 
     const token = req.cookies.token
+    
     if(!token){
         return res.status(401).json({
             message:"token not provided, unauthorised access"
