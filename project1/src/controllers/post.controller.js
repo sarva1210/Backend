@@ -71,6 +71,7 @@ async function getPostController(req,res){
         posts
     })
 }
+
 async function getPostDetailsController(req,res) {
     const token = req.cookies.token
 
