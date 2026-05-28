@@ -11,9 +11,7 @@ app.get("/", (req, res) => {
     for (let i = 0; i < 1000000000; i++) {
         sum += i;
     }
-    res
-        .status(200)
-        .json({ message: "Sum calculated successfully", sum });
+    res.send(` Hello world! The sum is ${sum}`);
 });
 
 
